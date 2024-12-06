@@ -3,7 +3,7 @@ package miarbolbinario;
 public class MiArbolBinario {
 
     public static void main(String[] args) {
-        ArbolBinario arbol = new ArbolBinario();
+        ArbolBionario arbol = new ArbolBionario();
 
         arbol.insertar(50);
         arbol.insertar(30);

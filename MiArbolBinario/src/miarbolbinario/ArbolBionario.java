@@ -1,10 +1,10 @@
 package miarbolbinario;
 
-public class ArbolBinario {
+public class ArbolBionario {
 
     Nodo raiz;
 
-    public ArbolBinario() {
+    public ArbolBionario() {
         raiz = null;
     }
 
