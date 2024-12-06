@@ -14,7 +14,7 @@ public class MiArbolBinario {
         arbol.insertar(60);
         arbol.insertar(35);
 
-        Boolean iniciar = false;
+        Boolean iniciar = true;
 
         while (iniciar) {
             displayMenu();
@@ -22,20 +22,57 @@ public class MiArbolBinario {
             try {
                 System.out.println("Ingrese una opción");
                 int usuario = teclado.nextInt();
-                
+
                 switch (usuario) {
+
+                    case 0:
+                        System.out.println("Muchas gracias, vuelva pronto");
+                        iniciar=false;
+                        break;
+
                     case 1:
                         System.out.println("Iniciando PreOrden");
                         arbol.preOrden();
                         break;
-                        
-               
+
+                    case 2:
+                        System.out.println("Iniciando InOrden");
+                        arbol.inOrden();
+                        break;
+
+                    case 3:
+                        System.out.println("Iniciando PostOrden");
+                        arbol.postOrden();
+                        break;
+
+                    case 4:
+                        System.out.println("Insertar en el arbol");
+                        int num = teclado.nextInt();
+                        arbol.insertar(num);
+                        break;
+
+                    case 5:
+                        System.out.println("Eliminar del arbol"); //completar
+                        break;
+
+                    case 6:
+                        System.out.println("Contar las hojas del arbol");
+                        arbol.contarHojas();
+                        break;
+
+                    case 7:
+                        System.out.println("Nodos con un hijo");
+                        arbol.nodosUnHijo();
+                        break;
+
                     default:
                         System.out.println("Opcion incorrecta");
                         break;
                 }
 
             } catch (Exception e) {
+                System.out.println("Error de entrada");
+                teclado.nextLine();
             }
 
         }
@@ -43,7 +80,7 @@ public class MiArbolBinario {
     }
 
     public static void displayMenu() {
-        System.out.println(" 1: Pre-Orden || 2: InOrden || 3: PostOrden");
+        System.out.println("\n 1: Pre-Orden || 2: InOrden || 3: PostOrden");
         System.out.println(" 4: Insertar || 5: Eliminar || 6: Hojas del arbol");
         System.out.println(" 7: Nodos con hijo || 0: Salir");
     }

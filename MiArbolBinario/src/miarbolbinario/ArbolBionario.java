@@ -1,3 +1,4 @@
+//Care ombligo
 package miarbolbinario;
 
 public class ArbolBionario {
@@ -48,7 +49,7 @@ public class ArbolBionario {
     }
     
     public void inOrden(){
-        inOrden(raiz);
+        inOrden(raiz);  //recursividad
     }
 
     private void postOrden(Nodo nodo) {
@@ -72,6 +73,10 @@ public class ArbolBionario {
         }
         return contarHojas(nodo.izquierda) + contarHojas(nodo.derecha); // Suma las hojas de los subárboles
     }
+    
+    public int contarHojas(){
+        return contarHojas(raiz);
+    }
 
     int nodosUnHijo(Nodo nodo) {
         if (nodo == null) {
@@ -83,6 +88,10 @@ public class ArbolBionario {
             count = 1; // Nodo con un solo hijo
         }
         return count + nodosUnHijo(nodo.izquierda) + nodosUnHijo(nodo.derecha);
+    }
+    
+    public int nodosUnHijo(){
+        return nodosUnHijo(raiz);
     }
 
 }
