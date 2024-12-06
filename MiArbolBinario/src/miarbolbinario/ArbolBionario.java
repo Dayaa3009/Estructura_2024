@@ -22,12 +22,11 @@ public class ArbolBionario {
         return nodo; // Retorna el nodo actualizado
     }
 
-    // Método público para insertar un valor en el árbol
     void insertar(int valor) {
         raiz = insertar(raiz, valor);
     }
 
-    public void preOrden(Nodo nodo) {
+    private void preOrden(Nodo nodo) {
         if (nodo != null) {
             System.out.print(nodo.valor + " "); // Visita el nodo actual
             preOrden(nodo.izquierda);          // Recorre el subárbol izquierdo
@@ -35,22 +34,33 @@ public class ArbolBionario {
         }
     }
 
-    public void inOrden(Nodo nodo) {
+    public void preOrden() {
+        preOrden(raiz);
+    }
+
+    private void inOrden(Nodo nodo) {
 
         if (nodo != null) {
             inOrden(nodo.izquierda);          // Recorre el subárbol izquierdo
             System.out.print(nodo.valor + " "); // Visita el nodo actual
             inOrden(nodo.derecha);            // Recorre el subárbol derecho
         }
-
+    }
+    
+    public void inOrden(){
+        inOrden(raiz);
     }
 
-    public void postOrden(Nodo nodo) {
+    private void postOrden(Nodo nodo) {
         if (nodo != null) {
             postOrden(nodo.izquierda);        // Recorre el subárbol izquierdo
             postOrden(nodo.derecha);          // Recorre el subárbol derecho
             System.out.print(nodo.valor + " "); // Visita el nodo actual
         }
+    }
+    
+    public void postOrden(){
+        postOrden(raiz);
     }
 
     int contarHojas(Nodo nodo) {
