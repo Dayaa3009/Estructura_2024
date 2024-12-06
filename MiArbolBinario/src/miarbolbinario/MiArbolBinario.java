@@ -27,7 +27,7 @@ public class MiArbolBinario {
 
                     case 0:
                         System.out.println("Muchas gracias, vuelva pronto");
-                        iniciar=false;
+                        iniciar = false;
                         break;
 
                     case 1:
@@ -52,7 +52,10 @@ public class MiArbolBinario {
                         break;
 
                     case 5:
+                        arbol.preOrden();  //Muestra lo elementos del arbol en preOrden
                         System.out.println("Eliminar del arbol"); //completar
+                        int numBorrar = teclado.nextInt();
+                        arbol.eliminar(numBorrar);
                         break;
 
                     case 6:

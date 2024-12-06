@@ -1,4 +1,3 @@
-//Care ombligo
 package miarbolbinario;
 
 public class ArbolBionario {
@@ -47,8 +46,8 @@ public class ArbolBionario {
             inOrden(nodo.derecha);            // Recorre el subárbol derecho
         }
     }
-    
-    public void inOrden(){
+
+    public void inOrden() {
         inOrden(raiz);  //recursividad
     }
 
@@ -59,8 +58,8 @@ public class ArbolBionario {
             System.out.print(nodo.valor + " "); // Visita el nodo actual
         }
     }
-    
-    public void postOrden(){
+
+    public void postOrden() {
         postOrden(raiz);
     }
 
@@ -73,8 +72,8 @@ public class ArbolBionario {
         }
         return contarHojas(nodo.izquierda) + contarHojas(nodo.derecha); // Suma las hojas de los subárboles
     }
-    
-    public int contarHojas(){
+
+    public int contarHojas() {
         return contarHojas(raiz);
     }
 
@@ -89,9 +88,50 @@ public class ArbolBionario {
         }
         return count + nodosUnHijo(nodo.izquierda) + nodosUnHijo(nodo.derecha);
     }
-    
-    public int nodosUnHijo(){
+
+    public int nodosUnHijo() {
         return nodosUnHijo(raiz);
+    }
+
+    // Método para eliminar un nodo
+    public Nodo eliminar(Nodo nodo, int valor) {
+        if (nodo == null) {
+            System.out.println("El nodo no existe en el árbol.");
+            return null;
+        }
+        if (valor < nodo.valor) {
+            nodo.izquierda = eliminar(nodo.izquierda, valor);
+        } else if (valor > nodo.valor) {
+            nodo.derecha = eliminar(nodo.derecha, valor);
+        } else {
+            // Caso 1: Nodo sin hijos
+            if (nodo.izquierda == null && nodo.derecha == null) {
+                return null;
+            }
+            // Caso 2: Nodo con un solo hijo
+            if (nodo.izquierda == null) {
+                return nodo.derecha;
+            } else if (nodo.derecha == null) {
+                return nodo.izquierda;
+            }
+            // Caso 3: Nodo con dos hijos
+            Nodo sucesor = encontrarMinimo(nodo.derecha);
+            nodo.valor = sucesor.valor;
+            nodo.derecha = eliminar(nodo.derecha, sucesor.valor);
+        }
+        return nodo;
+    }
+
+    public void eliminar(int valor) {
+        raiz = eliminar(raiz, valor);
+    }
+
+    // Método auxiliar para encontrar el nodo mínimo en el subárbol derecho
+    private Nodo encontrarMinimo(Nodo nodo) {
+        while (nodo.izquierda != null) {
+            nodo = nodo.izquierda;
+        }
+        return nodo;
     }
 
 }
