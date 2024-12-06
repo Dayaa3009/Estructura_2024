@@ -1,88 +1,78 @@
 package miarbolbinario;
 
-public class ArbolBionario {
+public class ArbolBinario {
 
     Nodo raiz;
 
-    public void insertar(int valor) {
-        Nodo nuevoNodo = new Nodo(valor);
-        if (raiz == null) {
-            raiz = nuevoNodo;
-        } else {
-            Nodo actual = raiz;
-            while (true) {
-                if (valor < actual.valor) {
-                    if (actual.izquierdo == null) {
-                        actual.izquierdo = nuevoNodo;
-                        break;
-                    } else {
-                        actual = actual.izquierdo;
-                    }
-                } else {
-                    if (actual.derecho == null) {
-                        actual.derecho = nuevoNodo;
-                        break;
-                    } else {
-                        actual = actual.derecho;
-                    }
-                }
-            }
-        }
+    public ArbolBinario() {
+        raiz = null;
     }
 
-    public void preorden(Nodo nodo) {
+    // Método recursivo para insertar un nodo
+    Nodo insertar(Nodo nodo, int valor) {
+        if (nodo == null) {
+            return new Nodo(valor);
+        }
+
+        if (valor < nodo.valor) {
+            nodo.izquierda = insertar(nodo.izquierda, valor); // Inserta en el subárbol izquierdo
+        } else if (valor > nodo.valor) {
+            nodo.derecha = insertar(nodo.derecha, valor); // Inserta en el subárbol derecho
+        }
+        return nodo; // Retorna el nodo actualizado
+    }
+
+    // Método público para insertar un valor en el árbol
+    void insertar(int valor) {
+        raiz = insertar(raiz, valor);
+    }
+
+    public void preOrden(Nodo nodo) {
         if (nodo != null) {
-            System.out.println(nodo.valor + " ");
-            preorden(nodo.izquierdo);
-            preorden(nodo.derecho);
+            System.out.print(nodo.valor + " "); // Visita el nodo actual
+            preOrden(nodo.izquierda);          // Recorre el subárbol izquierdo
+            preOrden(nodo.derecha);            // Recorre el subárbol derecho
         }
     }
 
-    public void inorden(Nodo nodo) {
+    public void inOrden(Nodo nodo) {
+
         if (nodo != null) {
-            inorden(nodo.izquierdo);
-            System.out.println(nodo.valor + " ");
-            inorden(nodo.derecho);
+            inOrden(nodo.izquierda);          // Recorre el subárbol izquierdo
+            System.out.print(nodo.valor + " "); // Visita el nodo actual
+            inOrden(nodo.derecha);            // Recorre el subárbol derecho
         }
+
     }
 
-    public void postorden(Nodo nodo) {
+    public void postOrden(Nodo nodo) {
         if (nodo != null) {
-            postorden(nodo.izquierdo);
-            postorden(nodo.derecho);
-            System.out.println(nodo.valor + " ");
-
+            postOrden(nodo.izquierda);        // Recorre el subárbol izquierdo
+            postOrden(nodo.derecha);          // Recorre el subárbol derecho
+            System.out.print(nodo.valor + " "); // Visita el nodo actual
         }
     }
 
-    public int contarNodosHoja(Nodo nodo) {
+    int contarHojas(Nodo nodo) {
+        if (nodo == null) {
+            return 0; // Si el nodo es nulo, no hay hojas
+        }
+        if (nodo.izquierda == null && nodo.derecha == null) {
+            return 1; // Es una hoja
+        }
+        return contarHojas(nodo.izquierda) + contarHojas(nodo.derecha); // Suma las hojas de los subárboles
+    }
+
+    int nodosUnHijo(Nodo nodo) {
         if (nodo == null) {
             return 0;
-
-        } else if (nodo.izquierdo == null && nodo.derecho == null) {
-            return 1;
-        } else {
-            return contarNodosHoja(nodo.izquierdo) + contarNodosHoja(nodo.derecho);
         }
-    }
-
-    public void encontrarNodosConUnHijo(Nodo nodo) {
-        if (nodo != null) {
-            if ((nodo.izquierdo != null && nodo.derecho == null)
-                    || (nodo.izquierdo == null && nodo.derecho != null)) {
-                System.out.println(nodo.valor + " ");
-            }
-            encontrarNodosConUnHijo(nodo.izquierdo);
-            encontrarNodosConUnHijo(nodo.derecho);
-
+        int count = 0;
+        if ((nodo.izquierda == null && nodo.derecha != null)
+                || (nodo.izquierda != null && nodo.derecha == null)) {
+            count = 1; // Nodo con un solo hijo
         }
+        return count + nodosUnHijo(nodo.izquierda) + nodosUnHijo(nodo.derecha);
     }
 
 }
-}
-
-    
-    
-    
-    
-    }
