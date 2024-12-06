@@ -1,6 +1,5 @@
 package miarbolbinario;
 
-import javax.accessibility.AccessibleRole;
 import java.util.Scanner;
 
 public class MiArbolBinario {
@@ -20,7 +19,7 @@ public class MiArbolBinario {
             displayMenu();
 
             try {
-                System.out.println("Ingrese una opción");
+                System.out.println("Ingrese una opcion");
                 int usuario = teclado.nextInt();
 
                 switch (usuario) {
@@ -59,13 +58,11 @@ public class MiArbolBinario {
                         break;
 
                     case 6:
-                        System.out.println("Contar las hojas del arbol");
-                        arbol.contarHojas();
+                        System.out.println("Hojas del arbol: " + arbol.contarHojas());
                         break;
 
                     case 7:
-                        System.out.println("Nodos con un hijo");
-                        arbol.nodosUnHijo();
+                        System.out.println("Nodos con un hijo: " + arbol.nodosUnHijo());
                         break;
 
                     default:
